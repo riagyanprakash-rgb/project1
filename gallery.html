@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10142b">
+  <title>Gallery · littlehello</title>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    * { box-sizing: border-box; }
+    body { min-height: 100vh; margin: 0; color: #f8f7ff; background: #10142b; background-image: radial-gradient(ellipse at 18% 15%, #634bba55, transparent 38%), radial-gradient(ellipse at 83% 82%, #11b9b355, transparent 34%); }
+    body::before, body::after { content: ""; position: fixed; z-index: -1; width: 24rem; height: 24rem; border: 1px solid #ffffff14; border-radius: 50%; pointer-events: none; }
+    body::before { top: -12rem; right: -7rem; box-shadow: 0 0 0 3rem #ffffff08, 0 0 0 6rem #ffffff05; }
+    body::after { bottom: -17rem; left: -11rem; width: 32rem; height: 32rem; box-shadow: 0 0 0 3rem #ffffff08, 0 0 0 6rem #ffffff05; }
+    .site-header { display: flex; align-items: center; justify-content: space-between; width: min(100% - 3rem, 1080px); margin: auto; padding: 1.4rem 0; }
+    .brand { color: #f8f7ff; text-decoration: none; font-weight: 750; letter-spacing: -.04em; }
+    .brand span { color: #b6a7ff; }
+    nav { display: flex; gap: .4rem; }
+    nav a { padding: .65rem .9rem; border: 1px solid transparent; border-radius: 999px; color: #c4c5d8; text-decoration: none; font-size: .9rem; transition: background .2s, color .2s, border-color .2s; }
+    nav a:hover, nav a[aria-current="page"] { color: #fff; border-color: #ffffff20; background: #ffffff0d; }
+    main { width: min(90vw, 1020px); margin: 3.5rem auto 5rem; }
+    .eyebrow { margin: 0 0 .8rem; color: #b8b4d8; font-size: .75rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(3.2rem, 9vw, 6rem); line-height: 1; letter-spacing: -.075em; }
+    h1 span { color: transparent; background: linear-gradient(100deg, #a99aff 5%, #f2a9ed 52%, #7ce9dc 100%); background-clip: text; -webkit-background-clip: text; }
+    .lead { max-width: 42rem; margin: 1.3rem 0 2.4rem; color: #b5b8ce; font-size: 1.05rem; line-height: 1.75; }
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    figure { margin: 0; overflow: hidden; border: 1px solid #ffffff20; border-radius: 1.15rem; background: #ffffff08; box-shadow: 0 16px 45px #0003; }
+    .art { display: grid; place-items: center; min-height: 220px; overflow: hidden; position: relative; isolation: isolate; }
+    .art::before, .art::after { content: ""; position: absolute; z-index: -1; border-radius: 50%; transition: transform .4s ease; }
+    figure:hover .art::before { transform: scale(1.12) rotate(12deg); }
+    figure:hover .art::after { transform: scale(1.1) translate(-8px, 5px); }
+    .art span { color: #fff; font-size: 3.5rem; filter: drop-shadow(0 8px 20px #0004); }
+    .art-one { background: linear-gradient(135deg, #473c8b, #cf83c7 55%, #f5bbab); }
+    .art-one::before { width: 170px; height: 170px; background: linear-gradient(135deg, #ffdf9e, #f08eb0); top: -20px; right: -25px; }
+    .art-one::after { width: 220px; height: 220px; background: #453a82; bottom: -150px; left: -25px; }
+    .art-two { background: linear-gradient(140deg, #65c9be, #4369a5 55%, #282752); }
+    .art-two::before { width: 180px; height: 180px; border-radius: 42% 58% 63% 37% / 40% 38% 62% 60%; background: #b3efcf; }
+    .art-two::after { width: 95px; height: 95px; background: #f5c7ce; transform: translate(45px, 25px); }
+    .art-three { background: linear-gradient(145deg, #faad8e, #df6d9c 54%, #714ba4); }
+    .art-three::before { width: 220px; height: 220px; background: #f7d68e; left: -90px; top: -110px; }
+    .art-three::after { width: 150px; height: 150px; background: #644aa4; right: -25px; bottom: -50px; }
+    .art-four { background: linear-gradient(135deg, #293e72, #7869c3 55%, #c99ce5); }
+    .art-four::before { width: 210px; height: 210px; border: 25px solid #f5b8db; }
+    .art-four::after { width: 95px; height: 95px; background: #ffd78d; transform: translate(42px, -30px); }
+    .art-five { background: linear-gradient(140deg, #f0c88a, #e78b88 50%, #ac6db1); }
+    .art-five::before { width: 200px; height: 200px; background: #fff0c4; top: 65px; }
+    .art-five::after { width: 145px; height: 145px; background: #82c9c0; transform: translate(25px, -38px); }
+    .art-six { background: linear-gradient(135deg, #295c68, #53aaa0 52%, #d4d785); }
+    .art-six::before { width: 210px; height: 210px; background: #f2d28f; right: -80px; bottom: -100px; }
+    .art-six::after { width: 135px; height: 135px; border: 18px solid #e8f0cc; transform: translate(-25px, -22px); }
+    figcaption { padding: 1rem 1.1rem 1.1rem; }
+    figcaption strong { display: block; font-size: .98rem; }
+    figcaption span { display: block; margin-top: .3rem; color: #aeb2ca; font-size: .84rem; }
+    @media (max-width: 700px) { .gallery { grid-template-columns: repeat(2, 1fr); } .art { min-height: 190px; } }
+    @media (max-width: 520px) { .site-header { width: min(100% - 2rem, 1080px); padding: 1rem 0; } nav { gap: 0; } nav a { padding: .5rem .53rem; font-size: .78rem; } main { margin-top: 2.5rem; } .gallery { grid-template-columns: 1fr; } .art { min-height: 230px; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">little<span>hello</span></a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="gallery.html" aria-current="page">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <p class="eyebrow">A few colorful moments</p>
+    <h1>A little <span>gallery.</span></h1>
+    <p class="lead">A collection of bright shapes, soft colors, and happy little details. Take a look around and find a favorite.</p>
+    <section class="gallery" aria-label="Gallery of abstract artwork">
+      <figure><div class="art art-one" role="img" aria-label="Sunset colors with layered circles"><span aria-hidden="true">✦</span></div><figcaption><strong>Golden hour</strong><span>Warm light, softer edges</span></figcaption></figure>
+      <figure><div class="art art-two" role="img" aria-label="Mint and rose shapes on a blue green background"><span aria-hidden="true">◌</span></div><figcaption><strong>Daydream</strong><span>A little room to wander</span></figcaption></figure>
+      <figure><div class="art art-three" role="img" aria-label="Coral and violet abstract shapes"><span aria-hidden="true">✿</span></div><figcaption><strong>Good things</strong><span>Made of small bright moments</span></figcaption></figure>
+      <figure><div class="art art-four" role="img" aria-label="A pink ring and golden circle on a violet background"><span aria-hidden="true">◎</span></div><figcaption><strong>Orbit</strong><span>Somewhere in the in-between</span></figcaption></figure>
+      <figure><div class="art art-five" role="img" aria-label="Cream and teal circles on a peach background"><span aria-hidden="true">☼</span></div><figcaption><strong>Slow morning</strong><span>Easy does it</span></figcaption></figure>
+      <figure><div class="art art-six" role="img" aria-label="Pale shapes on a deep teal background"><span aria-hidden="true">♡</span></div><figcaption><strong>Little hello</strong><span>A friendly start to anything</span></figcaption></figure>
+    </section>
+  </main>
+</body>
+</html>
